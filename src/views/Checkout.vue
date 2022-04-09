@@ -36,7 +36,7 @@
         </div>
       </aside>
       <main class="main">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div class="container d-flex justify-content-between">
             <button
               class="navbar-toggler"
@@ -174,72 +174,137 @@
             </ul>
           </div>
         </nav>
-        <div class="discount-banner row">
-          <div class="col-md-6">
-            <p class="text-center display-5 mt-5 ms-md-5 text-info">
-              NEW OPENNING
-            </p>
-          </div>
-          <div class="col-md-6">
-            <p class="text-center display-6 mt-md-3 mt-3 me-md-5 text-info">
-              DISCOUNT CODE
-            </p>
-            <p class="text-center display-2 me-md-5 text-info mt-3">
-              4kete 20%off
-            </p>
-          </div>
-        </div>
-        <section class="container col-md-9 mb-5 d-none d-md-block">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
-          <div class="row border border-3 border-dark p-md-5 rounded-pill">
-            <div class="col-md-6">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <div class="col-md-6 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="container col-md-9 mb-5 d-block d-md-none">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
+        <section class="container mb-5 col-md-7 mb-5" style="margin-top: 100px">
           <div class="row">
-            <div class="col-md-8">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
+            <div class="col-md-4"><h2 class="">PAYMENT.</h2></div>
+            <div class="col-md-8 mt-3 mt-md-0">
+              <div class="nav justify-content-md-end nav-pills">
+                <div class="nav-item col-4 col-md-3 text-center">
+                  <p class="nav-link rounded-0 border border-dark text-dark">
+                    CART
+                  </p>
+                </div>
+                <div class="nav-item col-4 col-md-3 text-center">
+                  <p
+                    class="
+                      nav-link
+                      rounded-0
+                      border border-start-0 border-end-0 border-dark
+                      text-dark
+                    "
+                  >
+                    ORDER
+                  </p>
+                </div>
+                <div class="nav-item col-4 col-md-3 text-center">
+                  <p
+                    class="
+                      nav-link
+                      rounded-0
+                      border border-dark
+                      text-white
+                      bg-danger
+                    "
+                  >
+                    PAYMENT
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="col-md-4 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
+          </div>
+          <hr />
+          <!-- 購物車列表 -->
+
+          <div class="" style="margin-bottom: 120px">
+            <div class="my-5 row justify-content-center">
+              <form @submit.prevent="payOrder">
+                <table class="table align-middle table-borderless">
+                  <thead style="border-bottom: 1.5px solid #dddddd">
+                    <th>NAME</th>
+                    <th></th>
+                    <th>QTY</th>
+
+                    <th class="text-end">PRICE</th>
+                  </thead>
+                  <tbody style="border-bottom: 1.5px solid #dddddd">
+                    <tr v-for="item in order.products" :key="item.id">
+                      <td class="col-2">
+                        <img class="img-fluid" :src="item.product.imageUrl" />
+                      </td>
+                      <td>{{ item.product.title }}</td>
+                      <td>{{ item.qty }}</td>
+                      <td class="text-end">{{ item.final_total }}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td class="h5 text-danger">Total</td>
+                      <td class="text-end h5 text-danger">{{ order.total }}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th width="100">Email</th>
+                      <td>{{ order.user.email }}</td>
+                    </tr>
+                    <tr>
+                      <th>姓名</th>
+                      <td>{{ order.user.name }}</td>
+                    </tr>
+                    <tr>
+                      <th>收件人電話</th>
+                      <td>{{ order.user.tel }}</td>
+                    </tr>
+                    <tr>
+                      <th>收件人地址</th>
+                      <td>{{ order.user.address }}</td>
+                    </tr>
+                    <tr>
+                      <th>付款狀態</th>
+                      <td>
+                        <span v-if="!order.is_paid">尚未付款</span>
+                        <span v-else class="text-primary">
+                          PAYMENT COMPLETED</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="d-flex justify-content-between mt-5">
+                  <router-link
+                    class="btn btn-outline-dark py-md-3 py-2 rounded-0"
+                    style="width: 30%"
+                    to="/skateboards"
+                  >
+                    CONTINUE SHOPPING
+                  </router-link>
+                  <button
+                    v-if="order.is_paid === false"
+                    class="btn btn-outline-danger py-md-3 py-2 rounded-0"
+                    style="width: 30%"
+                  >
+                    PAYMENT
+                  </button>
+                  <div
+                    v-else
+                    class="
+                      bg-primary
+                      py-md-3 py-2
+                      rounded-0
+                      text-center text-white
+                      border
+                    "
+                    style="width: 30%"
+                  >
+                    ORDER COMPLETED
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </section>
@@ -274,16 +339,19 @@ import UserLogin from '../components/UserLogin.vue'
 export default {
   data () {
     return {
+      pagination: {},
       isLoading: false,
       cartnow: 0,
       tempProduct: {},
       products: [],
       product: {},
+      filterData: [],
       status: {
         loadingItem: ''
       },
       cart: {},
       coupon_code: '',
+      coupon_staus: 0,
       form: {
         user: {
           name: '',
@@ -292,12 +360,22 @@ export default {
           address: ''
         },
         message: ''
-      }
+      },
+      order: {
+        user: {}
+      },
+      orderId: ''
     }
   },
   components: { UserModal, UserLogin },
   methods: {
     currency,
+    filterArray () {
+      this.filterData = this.products.filter((item) => {
+        return item.price === item.origin_price
+      })
+      console.log(this.filterData)
+    },
     toogleMenu (evt) {
       evt.preventDefault()
       this.$refs.body.classList.toggle('sidebar-toggled')
@@ -335,6 +413,7 @@ export default {
         console.log(response)
         this.cart = response.data.data
         this.isLoading = false
+        this.filterArray()
       })
     },
     updateCart (item) {
@@ -365,8 +444,13 @@ export default {
         code: this.coupon_code
       }
       this.$http.post(url, { data: coupon }).then((res) => {
-        console.log(res)
+        console.log(res.data.message)
         this.getCart()
+        if (res.data.success === false) {
+          this.coupon_staus = 1
+        } else {
+          this.coupon_staus = 0
+        }
       })
     },
     createOrder () {
@@ -383,6 +467,24 @@ export default {
       const userComponent = this.$refs.userModal
       userComponent.showModal()
     },
+    getOrder () {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`
+      this.$http.get(url).then((res) => {
+        if (res.data.success) {
+          this.order = res.data.order
+          console.log(this.order)
+        }
+      })
+    },
+    payOrder () {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
+      this.$http.post(url).then((res) => {
+        console.log(res)
+        if (res.data.success) {
+          this.getOrder()
+        }
+      })
+    },
     openLogin () {
       const userLogin = this.$refs.userLogin
       userLogin.showModal()
@@ -398,8 +500,9 @@ export default {
     }
   },
   created () {
-    this.getProducts()
-    this.getCart()
+    this.orderId = this.$route.params.orderId
+    console.log(this.orderId)
+    this.getOrder()
   }
 }
 </script>

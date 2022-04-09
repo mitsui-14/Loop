@@ -36,7 +36,7 @@
         </div>
       </aside>
       <main class="main">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div class="container d-flex justify-content-between">
             <button
               class="navbar-toggler"
@@ -190,7 +190,7 @@
           </div>
         </div>
         <section class="container col-md-9 mb-5 d-none d-md-block">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
+          <h1 class="mt-3 mb-3">Contact.</h1>
           <div class="row border border-3 border-dark p-md-5 rounded-pill">
             <div class="col-md-6">
               <div class="youtube-rwd">
@@ -204,20 +204,19 @@
               </div>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
+              <h3>OPEN TIME</h3>
+              <p class="fs-5">2:00 PM - 8:00 PM - Monday - Saturday</p>
+              <h3>TEL</h3>
+              <p class="fs-5">080-0857-057</p>
+              <h3>ADDRESS</h3>
               <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
+                101F, No.23, Shvit 13, Skateboards Rd., Heaven City
               </p>
             </div>
           </div>
         </section>
         <section class="container col-md-9 mb-5 d-block d-md-none">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
+          <h1 class="mt-3 mb-3">Contact.</h1>
           <div class="row">
             <div class="col-md-8">
               <div class="youtube-rwd">
@@ -231,14 +230,13 @@
               </div>
             </div>
             <div class="col-md-4 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
+              <h3>OPEN TIME</h3>
+              <p class="fs-5">2:00 PM - 8:00 PM - Monday - Saturday</p>
+              <h3>TEL</h3>
+              <p class="fs-5">080-0857-057</p>
+              <h3>ADDRESS</h3>
               <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
+                101F, No.23, Shvit 13, Skateboards Rd., Heaven City
               </p>
             </div>
           </div>
@@ -246,7 +244,7 @@
         <footer class="bg-dark text-center">
           <div class="row py-5">
             <div class="col-md-4 text-white mx-auto">
-              <p>New Taipei City 242</p>
+              <p>Shuvit1080@gmail.com</p>
             </div>
             <div class="col-md-4 text-white mx-auto">
               <p>© 2022 Luis | All rights reserved.</p>

@@ -2,7 +2,7 @@
   <Loading :active="isLoading"></Loading>
   <body ref="body">
     <div class="d-flex" style="overflow-x: hidden">
-      <aside class="sidebar vh-100 d-md-none bg-dark fixed-top">
+      <aside class="sidebar vh-100 d-md-none bg-dark">
         <div class="navbar-toggler mt-2">
           <a href="#">
             <i
@@ -14,30 +14,20 @@
         </div>
 
         <div class="text-center" style="margin-top: 40%">
-          <div class="mt-5">
-            <router-link class="text-decoration-none link-light" to="/about">
-              About</router-link
-            >
-          </div>
-
-          <div class="mt-5">
-            <router-link
-              class="text-decoration-none link-light"
-              to="/skateboards"
-            >
-              Skateboards</router-link
-            >
-          </div>
-          <div class="mt-5">
-            <router-link class="text-decoration-none link-light" to="/contact">
-              Contact</router-link
-            >
-          </div>
+          <a href="#" class="text-decoration-none link-light">
+            <div class="mt-5">About</div>
+          </a>
+          <a href="#" class="text-white text-decoration-none">
+            <div class="mt-5">Skateboards</div>
+          </a>
+          <a href="#" class="text-white text-decoration-none">
+            <div class="mt-5">Contact</div>
+          </a>
         </div>
       </aside>
       <main class="main">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-          <div class="container d-flex justify-content-between">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 fixed-top">
+          <div class="container d-flex justify-content-between-top">
             <button
               class="navbar-toggler"
               type="button"
@@ -46,32 +36,23 @@
             >
               <span class="navbar-toggler-icon"></span>
             </button>
+            <a class="navbar-brand mx-auto text-white" href="#">ShuVit</a>
 
-            <router-link
-              class="navbar-brand text-white ms-md-0 ms-5 h2 mb-0 text-center"
-              to="/userboard"
-            >
-              LOOP</router-link
-            >
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                 <li class="nav-item">
-                  <router-link class="nav-link text-white fs-5" to="/about">
-                    About /</router-link
-                  >
-                </li>
-                <li class="nav-item">
-                  <router-link
+                  <a
                     class="nav-link text-white fs-5"
-                    to="/skateboards"
-                  >
-                    Skateboards /</router-link
+                    aria-current="page"
+                    href="#"
+                    >About /</a
                   >
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link text-white fs-5" to="/contact">
-                    Contact</router-link
-                  >
+                  <a class="nav-link text-white fs-5" href="#">Skateboards /</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white fs-5" href="#">Contact</a>
                 </li>
               </ul>
             </div>
@@ -79,7 +60,6 @@
               <li class="mx-2">
                 <a href="#"
                   ><i
-                    @click.prevent="openLogin()"
                     class="bi bi-person text-white"
                     style="font-size: 1.7rem"
                   ></i
@@ -118,7 +98,7 @@
                   <div
                     class="dropdown-menu dropdown-menu-end"
                     aria-labelledby="dropdownMenuLink"
-                    style="width: 350px; opacity: 0.9"
+                    style="width: 450px; opacity: 0.9"
                   >
                     <div v-if="cartnow !== 0">
                       <table class="table align-middle">
@@ -166,7 +146,7 @@
                       </div>
                     </div>
                     <div v-else class="text-center">
-                      <p class="h4 p-1">Your cart is currently empty.</p>
+                      <p class="h3">Your cart is currently empty.</p>
                     </div>
                   </div>
                 </div>
@@ -174,76 +154,86 @@
             </ul>
           </div>
         </nav>
-        <div class="discount-banner row">
-          <div class="col-md-6">
-            <p class="text-center display-5 mt-5 ms-md-5 text-info">
-              NEW OPENNING
-            </p>
+        <div class="container col-md-8" style="margin-top: 80px">
+          <div class="row justify-content-center g-md-5 mt-4">
+            <nav aria-label="breadcrumb" class="d-md-none">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <router-link
+                    class="text-decoration-none text-secondary"
+                    to="/skateboards"
+                    >ALL</router-link
+                  >
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  {{ product.category }}
+                </li>
+              </ol>
+            </nav>
+            <article class="col-md-6 text-center">
+              <img :src="product.imageUrl" alt="" class="img-fluid mb-3" />
+            </article>
+            <div class="col-md-6 pt-2">
+              <nav aria-label="breadcrumb" class="d-none d-md-block">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <router-link
+                      class="text-decoration-none text-secondary"
+                      to="/skateboards"
+                      >ALL</router-link
+                    >
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    {{ product.category }}
+                  </li>
+                </ol>
+              </nav>
+              <p class="fs-2">{{ product.title }}</p>
+              <p class="fs-4">{{ product.unit }}</p>
+              <p class="fs-4">{{ product.content }}</p>
+              <hr />
+              <del
+                class="h4 text-danger"
+                v-if="product.price !== product.origin_price"
+                >NT$ {{ currency(product.origin_price) }}</del
+              >
+              <div class="h4 mt-3 mb-3" v-if="product.price">
+                NT$ {{ currency(product.price) }}
+              </div>
+              <div class="mb-4 mt-3">
+                <input
+                  class="form-control form-control-lg rounded-0"
+                  v-model.number="qty"
+                  type="number"
+                  min="1"
+                />
+              </div>
+              <div class="d-flex">
+                <button
+                  type="button"
+                  class="btn btn-danger text-white rounded-0 w-50 btn-lg"
+                  @click="addToCart(product.id)"
+                >
+                 ADD TO CART
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-dark rounded-0 w-50 ms-3 btn-lg"
+                  @click="nowToBuy(product.id)"
+                >
+                  BUY NOW
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="col-md-6">
-            <p class="text-center display-6 mt-md-3 mt-3 me-md-5 text-info">
-              DISCOUNT CODE
-            </p>
-            <p class="text-center display-2 me-md-5 text-info mt-3">
-              4kete 20%off
-            </p>
+          <hr />
+          <div>
+            <p class="fs-3">PRODUCT DESCRIPTION</p>
+            {{ product.description }}
           </div>
         </div>
-        <section class="container col-md-9 mb-5 d-none d-md-block">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
-          <div class="row border border-3 border-dark p-md-5 rounded-pill">
-            <div class="col-md-6">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <div class="col-md-6 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="container col-md-9 mb-5 d-block d-md-none">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <div class="col-md-4 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
-            </div>
-          </div>
-        </section>
-        <footer class="bg-dark text-center">
+
+        <footer class="bg-dark text-center" style="margin-top: 8%">
           <div class="row py-5">
             <div class="col-md-4 text-white mx-auto">
               <p>New Taipei City 242</p>
@@ -258,73 +248,68 @@
         </footer>
       </main>
     </div>
-    <UserModal
-      ref="userModal"
-      :product="tempProduct"
-      @get-cart="getCart"
-    ></UserModal>
-    <UserLogin ref="userLogin"></UserLogin>
   </body>
 </template>
+
 <script>
-import UserModal from '../components/UserModal.vue'
 import { currency } from '../methods/filters'
-import UserLogin from '../components/UserLogin.vue'
 
 export default {
   data () {
     return {
-      isLoading: false,
-      cartnow: 0,
-      tempProduct: {},
-      products: [],
-      product: {},
       status: {
         loadingItem: ''
       },
       cart: {},
-      coupon_code: '',
-      form: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: ''
-        },
-        message: ''
-      }
+      cartnow: 0,
+      product: {},
+      id: '',
+      loadingItem: false,
+      isLoading: true,
+      qty: 1
     }
   },
-  components: { UserModal, UserLogin },
   methods: {
     currency,
     toogleMenu (evt) {
       evt.preventDefault()
       this.$refs.body.classList.toggle('sidebar-toggled')
     },
-    getProducts () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
+    getProduct () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`
       this.isLoading = true
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products
-        console.log('products:', response)
+      this.$http.get(api).then((response) => {
+        console.log(response.data)
         this.isLoading = false
+        if (response.data.success) {
+          this.product = response.data.product
+        }
       })
     },
-    getProduct (id) {
-      this.$router.push(`product/${id}`)
-    },
-    addCart (id) {
+    addToCart (id, qty = this.qty) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      this.status.loadingItem = id
       const cart = {
         product_id: id,
-        qty: 1
+        qty
       }
       this.$http.post(url, { data: cart }).then((res) => {
-        this.status.loadingItem = ''
+        this.isLoading = false
+        this.loadingItem = true
         console.log(res)
         this.getCart()
+      })
+    },
+    nowToBuy (id, qty = this.qty) {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      const cart = {
+        product_id: id,
+        qty
+      }
+      this.$http.post(url, { data: cart }).then((res) => {
+        this.isLoading = false
+        this.loadingItem = true
+        console.log(res)
+        this.$router.push('cart')
       })
     },
     getCart () {
@@ -337,20 +322,6 @@ export default {
         this.isLoading = false
       })
     },
-    updateCart (item) {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
-      this.isLoading = true
-      this.status.loadingItem = item.id
-      const cart = {
-        product_id: item.product_id,
-        qty: item.qty
-      }
-      this.$http.put(url, { data: cart }).then((res) => {
-        this.status.loadingItem = ''
-        console.log(res)
-        this.getCart()
-      })
-    },
     removeCartItem (item) {
       const id = item
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`
@@ -358,34 +329,6 @@ export default {
         console.log(res)
         this.getCart()
       })
-    },
-    addCouponCode () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
-      const coupon = {
-        code: this.coupon_code
-      }
-      this.$http.post(url, { data: coupon }).then((res) => {
-        console.log(res)
-        this.getCart()
-      })
-    },
-    createOrder () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
-      const order = this.form
-      this.$http.post(url, { data: order }).then((res) => {
-        console.log(res)
-        this.getCart()
-      })
-    },
-    openModal (item) {
-      console.log(item)
-      this.tempProduct = { ...item }
-      const userComponent = this.$refs.userModal
-      userComponent.showModal()
-    },
-    openLogin () {
-      const userLogin = this.$refs.userLogin
-      userLogin.showModal()
     }
   },
   watch: {
@@ -398,7 +341,8 @@ export default {
     }
   },
   created () {
-    this.getProducts()
+    this.id = this.$route.params.productId
+    this.getProduct()
     this.getCart()
   }
 }

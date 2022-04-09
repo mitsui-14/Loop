@@ -1,0 +1,29 @@
+$sidebar-width: 100%;
+
+.sidebar {
+    width:$sidebar-width;
+    margin-left: -$sidebar-width;
+    transition: margin-left .25s;
+}
+
+.main {
+    width:100%;
+}
+
+
+.sidebar-toggled {
+    .sidebar {
+        margin-left: 0;
+    }
+    .main{
+        margin-right: -100%;
+    }
+}
+@include media-breakpoint-down(lg) {
+    .sidebar-toggled {
+       
+        .main{
+            margin-left: 0;
+        }
+    }
+}

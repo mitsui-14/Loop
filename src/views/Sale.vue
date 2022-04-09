@@ -36,7 +36,7 @@
         </div>
       </aside>
       <main class="main">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div class="container d-flex justify-content-between">
             <button
               class="navbar-toggler"
@@ -174,72 +174,130 @@
             </ul>
           </div>
         </nav>
-        <div class="discount-banner row">
-          <div class="col-md-6">
-            <p class="text-center display-5 mt-5 ms-md-5 text-info">
-              NEW OPENNING
-            </p>
+        <section class="container mb-5 col-md-9 mb-5" style="margin-top: 100px">
+          <div class="d-flex">
+            <h5 class="">Skateboards</h5>
+            <h5 class="d-block d-md-none">/Sale</h5>
           </div>
-          <div class="col-md-6">
-            <p class="text-center display-6 mt-md-3 mt-3 me-md-5 text-info">
-              DISCOUNT CODE
-            </p>
-            <p class="text-center display-2 me-md-5 text-info mt-3">
-              4kete 20%off
-            </p>
-          </div>
-        </div>
-        <section class="container col-md-9 mb-5 d-none d-md-block">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
-          <div class="row border border-3 border-dark p-md-5 rounded-pill">
-            <div class="col-md-6">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
+          <hr />
+          <div class="row mt-md-5">
+            <div class="col-md-2 mb-3 mb-md-0">
+              <div
+                class="
+                  nav
+                  flex-md-column
+                  nav-pills
+                  d-flex
+                  flex-nowrap
+                  overflow-scroll
+                "
+              >
+                <div
+                  class="
+                    nav-item
+                    text-center text-md-start
+                    m-1
+                    col-4 col-md-12
+                    scroll
+                  "
+                >
+                  <router-link
+                    class="nav-link rounded-0 scroll-a"
+                    to="/skateboards"
+                    >All</router-link
+                  >
+                </div>
+                <div
+                  class="text-center text-md-start m-1 col-4 col-md-12 scroll"
+                >
+                  <router-link
+                    class="nav-link rounded-0 scroll-a"
+                    to="/shortboard"
+                    >Shortboard</router-link
+                  >
+                </div>
+                <div
+                  class="text-center text-md-start m-1 col-4 col-md-12 scroll"
+                >
+                  <router-link
+                    class="nav-link rounded-0 scroll-a"
+                    to="/longboard"
+                    >Longboard</router-link
+                  >
+                </div>
+                <div
+                  class="text-center text-md-start m-1 col-4 col-md-12 scroll"
+                >
+                  <router-link class="nav-link rounded-0 scroll-a" to="/cruiser"
+                    >Cruiser</router-link
+                  >
+                </div>
+                <div class="text-center text-md-start m-1 col-4 col-md-12">
+                  <router-link
+                    class="nav-link rounded-0 active bg-danger"
+                    to="/sale"
+                    >Sale</router-link
+                  >
+                </div>
               </div>
             </div>
-            <div class="col-md-6 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="container col-md-9 mb-5 d-block d-md-none">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
+            <div class="col-md-10 mb-5">
+              <div class="row g-3 gy-md-0">
+                <div
+                  class="col-md-4 col-6 demo text-center"
+                  v-for="item in filterData"
+                  :key="item.id"
+                >
+                  <a
+                    href="#"
+                    class="text-decoration-none"
+                    @click.prevent="getProduct(item.id)"
+                  >
+                    <img class="img-fluid h-80 mb-3" :src="item.imageUrl" />
+                  </a>
+                  <a href="#" class="text-decoration-none">
+                    <div
+                      class="bg-secondary d-none d-md-block btn-cart"
+                      @click.prevent="openModal(item)"
+                    >
+                      <p class="text-white py-2">ADD TO CART</p>
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-decoration-none"
+                    @click.prevent="getProduct(item.id)"
+                  >
+                    <p class="text-secondary fs-6 fw-light">
+                      {{ item.title }}
+                    </p>
+                    <div class="d-flex justify-content-center">
+                      <del
+                        class="text-danger fs-6 fw-light px-2"
+                        v-if="item.price !== item.origin_price"
+                      >
+                        NT${{ currency(item.origin_price) }}
+                      </del>
+                      <p class="text-secondary fs-6 fw-light px-2">
+                        NT${{ currency(item.price) }}
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#" class="text-decoration-none">
+                    <div
+                      class="border border-secondary d-block d-md-none rounded"
+                      @click.prevent="openModal(item)"
+                    >
+                      <p class="my-auto text-dark">
+                        <i
+                          class="bi bi-cart-fill"
+                          style="font-size: 1.2rem"
+                        ></i>
+                      </p>
+                    </div>
+                  </a>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
             </div>
           </div>
         </section>
@@ -274,11 +332,13 @@ import UserLogin from '../components/UserLogin.vue'
 export default {
   data () {
     return {
+      pagination: {},
       isLoading: false,
       cartnow: 0,
       tempProduct: {},
       products: [],
       product: {},
+      filterData: [],
       status: {
         loadingItem: ''
       },
@@ -298,6 +358,13 @@ export default {
   components: { UserModal, UserLogin },
   methods: {
     currency,
+    filterArray () {
+      this.isLoading = true
+      this.filterData = this.products.filter((item) => {
+        return item.price !== item.origin_price
+      })
+      this.isLoading = false
+    },
     toogleMenu (evt) {
       evt.preventDefault()
       this.$refs.body.classList.toggle('sidebar-toggled')
@@ -309,6 +376,7 @@ export default {
         this.products = response.data.products
         console.log('products:', response)
         this.isLoading = false
+        this.filterArray()
       })
     },
     getProduct (id) {
@@ -335,6 +403,7 @@ export default {
         console.log(response)
         this.cart = response.data.data
         this.isLoading = false
+        this.filterArray()
       })
     },
     updateCart (item) {

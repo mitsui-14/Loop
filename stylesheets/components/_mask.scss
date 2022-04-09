@@ -1,0 +1,68 @@
+.demo {
+    opacity: 1;
+    .btn-cart{
+        opacity: 0;
+    }
+}
+
+.demo:hover{
+    opacity: 0.8;
+    .btn-cart{
+        opacity:1;
+    }
+}
+
+.scroll {
+    border: solid 1px black;
+    background-color:white;
+color:black;
+}
+
+.scroll:hover {
+background-color: black;
+color:white;
+}
+
+.scroll-a {
+    color: black;
+}
+
+.scroll-a:hover {
+    color: white;
+}
+@include media-breakpoint-up(md) { 
+    .scroll {
+        border: solid 0px white;
+        background-color:white;
+    color:black;
+    }
+}
+
+.gray-input {
+    outline-color:red
+  }
+
+
+  .discount-banner {
+    background-image: url(../image/banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    padding: 7rem 0;
+    opacity: 0.9;
+}
+
+.youtube-rwd {
+    position:relative;
+    height:0;
+    padding-bottom:56.25%;
+    overflow:hidden
+}
+
+.youtube-rwd iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

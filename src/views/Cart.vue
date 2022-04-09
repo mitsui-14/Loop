@@ -36,7 +36,7 @@
         </div>
       </aside>
       <main class="main">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div class="container d-flex justify-content-between">
             <button
               class="navbar-toggler"
@@ -174,72 +174,178 @@
             </ul>
           </div>
         </nav>
-        <div class="discount-banner row">
-          <div class="col-md-6">
-            <p class="text-center display-5 mt-5 ms-md-5 text-info">
-              NEW OPENNING
-            </p>
-          </div>
-          <div class="col-md-6">
-            <p class="text-center display-6 mt-md-3 mt-3 me-md-5 text-info">
-              DISCOUNT CODE
-            </p>
-            <p class="text-center display-2 me-md-5 text-info mt-3">
-              4kete 20%off
-            </p>
-          </div>
-        </div>
-        <section class="container col-md-9 mb-5 d-none d-md-block">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
-          <div class="row border border-3 border-dark p-md-5 rounded-pill">
-            <div class="col-md-6">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <div class="col-md-6 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="container col-md-9 mb-5 d-block d-md-none">
-          <h1 class="mt-3 mb-3 border-1">ABOUT.</h1>
+        <section class="container mb-5 col-md-7 mb-5" style="margin-top: 100px">
           <div class="row">
-            <div class="col-md-8">
-              <div class="youtube-rwd">
-                <iframe
-                  src="https://www.youtube.com/embed/xKAPHmQJ5CE?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
+            <div class="col-md-4"><h2 class="">Cart.</h2></div>
+            <div class="col-md-8 mt-3 mt-md-0">
+              <div class="nav justify-content-md-end nav-pills">
+                <div class="nav-item col-4 col-md-3 text-center">
+                  <p
+                    class="
+                      nav-link
+                      rounded-0
+                      border border-dark
+                      bg-danger
+                      text-white
+                    "
+                  >
+                    CART
+                  </p>
+                </div>
+                <div class="nav-item col-4 col-md-3 text-center">
+                  <p
+                    class="
+                      nav-link
+                      rounded-0
+                      border border-start-0 border-end-0 border-dark
+                      text-dark
+                    "
+                  >
+                    ORDER
+                  </p>
+                </div>
+                <div class="nav-item col-4 col-md-3 text-center">
+                  <p class="nav-link rounded-0 border border-dark text-dark">
+                    PAYMENT
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="col-md-4 mt-3 mt-md-0">
-              <h3>Skate Out to Freedom</h3>
-              <p class="fs-5">
-                The risk of injury, the determination to pull off a difficult
-                trick, and the physical demands of the sport all come together
-                to produce an intense adrenaline rush. Pulling off a difficult
-                trick you've been working on for months is exciting, and that
-                excitement is part of the reason why skateboarding is so
-                popular.
-              </p>
+          </div>
+          <hr />
+          <!-- 購物車列表 -->
+
+          <div class="" style="margin-bottom: 120px">
+            <div v-if="cartnow !== 0">
+              <table class="table align-middle table-borderless">
+                <thead style="border-bottom: 1.5px solid #dddddd">
+                  <tr>
+                    <th></th>
+                    <th>NAME</th>
+                    <th></th>
+                    <th style="width: 110px">QTY</th>
+                    <th class="text-end">PRICE</th>
+                  </tr>
+                </thead>
+                <tbody style="border-bottom: 1.5px solid #dddddd">
+                  <tr
+                    v-for="item in cart.carts"
+                    :key="item.id"
+                    style="border-bottom: 1px solid #dddddd"
+                  >
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-outline-danger btn-sm"
+                        :disabled="status.loadingItem === item.id"
+                        @click="removeCartItem(item.id)"
+                      >
+                        <i class="bi bi-x"></i>
+                      </button>
+                    </td>
+                    <td class="col-md-3">
+                      <img class="img-fluid" :src="item.product.imageUrl" />
+                    </td>
+                    <td>
+                      {{ item.product.title }}
+                    </td>
+                    <td>
+                      <div class="input-group input-group-sm">
+                        <input
+                          type="number"
+                          class="form-control"
+                          v-model.number="item.qty"
+                          @change="updateCart(item)"
+                          :disabled="status.loadingItem === item.id"
+                          min="1"
+                        />
+                      </div>
+                    </td>
+                    <td class="text-end">
+                      {{ $filters.currency(item.final_total) }}
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="4" class="text-end">SUBTOTAL</td>
+                    <td class="text-end">
+                      {{ $filters.currency(cart.total) }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" class="text-end text-danger">DISCOUNT</td>
+                    <td
+                      class="text-end text-danger"
+                      v-if="cart.final_total !== cart.total"
+                    >
+                      {{ $filters.currency(cart.total - cart.final_total) }}
+                    </td>
+                    <td class="text-end text-danger" v-else>0</td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" class="text-end h5">TOTAL</td>
+                    <td
+                      class="text-end h5"
+                      v-if="cart.final_total === cart.total"
+                    >
+                      {{ $filters.currency(cart.total) }}
+                    </td>
+                    <td class="text-end h5" v-else>
+                      {{ $filters.currency(cart.final_total) }}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+              <h5 class="text-danger px-1" v-if="coupon_staus !== 0">
+                couldn't find!
+              </h5>
+              <div class="input-group mb-3 input-group-sm">
+                <input
+                  type="text"
+                  class="form-control rounded-0"
+                  v-model="coupon_code"
+                  placeholder="Coupon Code"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-outline-secondary rounded-0"
+                    type="button"
+                    @click="addCouponCode"
+                  >
+                    APPLY
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between mt-5">
+                <router-link
+                  class="btn btn-outline-dark py-md-3 py-2 rounded-0"
+                  style="width: 30%"
+                  to="/skateboards"
+                >
+                  SHOPPING
+                </router-link>
+
+                <router-link
+                  class="btn btn-outline-danger py-md-3 py-2 rounded-0"
+                  style="width: 30%"
+                  to="/order"
+                >
+                  CHECKOUT
+                </router-link>
+              </div>
+            </div>
+            <div v-else class="text-center">
+              <i class="bi bi-cart-x" style="font-size: 12rem"></i>
+              <h3 class="mb-5">Your cart is currently empty.</h3>
+              <div class>
+                <router-link
+                  class="btn btn-danger p-3 rounded-0"
+                  to="/skateboards"
+                >
+                  CONTINUE TO SHOP</router-link
+                >
+              </div>
             </div>
           </div>
         </section>
@@ -274,16 +380,19 @@ import UserLogin from '../components/UserLogin.vue'
 export default {
   data () {
     return {
+      pagination: {},
       isLoading: false,
       cartnow: 0,
       tempProduct: {},
       products: [],
       product: {},
+      filterData: [],
       status: {
         loadingItem: ''
       },
       cart: {},
       coupon_code: '',
+      coupon_staus: 0,
       form: {
         user: {
           name: '',
@@ -298,6 +407,12 @@ export default {
   components: { UserModal, UserLogin },
   methods: {
     currency,
+    filterArray () {
+      this.filterData = this.products.filter((item) => {
+        return item.price === item.origin_price
+      })
+      console.log(this.filterData)
+    },
     toogleMenu (evt) {
       evt.preventDefault()
       this.$refs.body.classList.toggle('sidebar-toggled')
@@ -335,6 +450,7 @@ export default {
         console.log(response)
         this.cart = response.data.data
         this.isLoading = false
+        this.filterArray()
       })
     },
     updateCart (item) {
@@ -365,8 +481,13 @@ export default {
         code: this.coupon_code
       }
       this.$http.post(url, { data: coupon }).then((res) => {
-        console.log(res)
+        console.log(res.data.message)
         this.getCart()
+        if (res.data.success === false) {
+          this.coupon_staus = 1
+        } else {
+          this.coupon_staus = 0
+        }
       })
     },
     createOrder () {
