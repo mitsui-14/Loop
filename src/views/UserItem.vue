@@ -2,7 +2,7 @@
   <Loading :active="isLoading"></Loading>
   <body ref="body">
     <div class="d-flex" style="overflow-x: hidden">
-      <aside class="sidebar vh-100 d-md-none bg-dark">
+      <aside class="sidebar vh-100 d-md-none bg-dark fixed-top">
         <div class="navbar-toggler mt-2">
           <a href="#">
             <i
@@ -14,20 +14,30 @@
         </div>
 
         <div class="text-center" style="margin-top: 40%">
-          <a href="#" class="text-decoration-none link-light">
-            <div class="mt-5">About</div>
-          </a>
-          <a href="#" class="text-white text-decoration-none">
-            <div class="mt-5">Skateboards</div>
-          </a>
-          <a href="#" class="text-white text-decoration-none">
-            <div class="mt-5">Contact</div>
-          </a>
+          <div class="mt-5">
+            <router-link class="text-decoration-none link-light" to="/about">
+              About</router-link
+            >
+          </div>
+
+          <div class="mt-5">
+            <router-link
+              class="text-decoration-none link-light"
+              to="/skateboards"
+            >
+              Skateboards</router-link
+            >
+          </div>
+          <div class="mt-5">
+            <router-link class="text-decoration-none link-light" to="/contact">
+              Contact</router-link
+            >
+          </div>
         </div>
       </aside>
       <main class="main">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 fixed-top">
-          <div class="container d-flex justify-content-between-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container d-flex justify-content-between">
             <button
               class="navbar-toggler"
               type="button"
@@ -36,23 +46,32 @@
             >
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand mx-auto text-white" href="#">ShuVit</a>
 
+            <router-link
+              class="navbar-brand text-white ms-md-0 ms-5 h2 mb-0 text-center"
+              to="/userboard"
+            >
+              LOOP</router-link
+            >
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                 <li class="nav-item">
-                  <a
-                    class="nav-link text-white fs-5"
-                    aria-current="page"
-                    href="#"
-                    >About /</a
+                  <router-link class="nav-link text-white fs-5" to="/about">
+                    About /</router-link
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white fs-5" href="#">Skateboards /</a>
+                  <router-link
+                    class="nav-link text-white fs-5"
+                    to="/skateboards"
+                  >
+                    Skateboards /</router-link
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white fs-5" href="#">Contact</a>
+                  <router-link class="nav-link text-white fs-5" to="/contact">
+                    Contact</router-link
+                  >
                 </li>
               </ul>
             </div>
@@ -60,6 +79,7 @@
               <li class="mx-2">
                 <a href="#"
                   ><i
+                    @click.prevent="openLogin()"
                     class="bi bi-person text-white"
                     style="font-size: 1.7rem"
                   ></i
@@ -98,7 +118,7 @@
                   <div
                     class="dropdown-menu dropdown-menu-end"
                     aria-labelledby="dropdownMenuLink"
-                    style="width: 450px; opacity: 0.9"
+                    style="width: 350px; opacity: 0.9"
                   >
                     <div v-if="cartnow !== 0">
                       <table class="table align-middle">
@@ -146,7 +166,7 @@
                       </div>
                     </div>
                     <div v-else class="text-center">
-                      <p class="h3">Your cart is currently empty.</p>
+                      <p class="h4 p-1">Your cart is currently empty.</p>
                     </div>
                   </div>
                 </div>
@@ -214,7 +234,7 @@
                   class="btn btn-danger text-white rounded-0 w-50 btn-lg"
                   @click="addToCart(product.id)"
                 >
-                 ADD TO CART
+                  ADD TO CART
                 </button>
                 <button
                   type="button"
@@ -248,11 +268,13 @@
         </footer>
       </main>
     </div>
+    <UserLogin ref="userLogin"></UserLogin>
   </body>
 </template>
 
 <script>
 import { currency } from '../methods/filters'
+import UserLogin from '../components/UserLogin.vue'
 
 export default {
   data () {
@@ -269,6 +291,7 @@ export default {
       qty: 1
     }
   },
+  components: { UserLogin },
   methods: {
     currency,
     toogleMenu (evt) {
@@ -329,6 +352,10 @@ export default {
         console.log(res)
         this.getCart()
       })
+    },
+    openLogin () {
+      const userLogin = this.$refs.userLogin
+      userLogin.showModal()
     }
   },
   watch: {

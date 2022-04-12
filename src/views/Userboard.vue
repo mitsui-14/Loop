@@ -174,7 +174,7 @@
             </ul>
           </div>
         </nav>
-        <section class="container mb-5" style="margin-top: 90px">
+        <section class="container mb-5 animate__animated animate__fadeInUp" style="margin-top: 90px">
           <div class="row g-3">
             <div class="col-md-8">
               <div
@@ -266,7 +266,7 @@
             </div>
           </div>
         </section>
-        <section class="container mb-5">
+        <section class="container mb-5 animate__animated animate__fadeInUp">
           <div class="border-bottom border-1 border-secondary mb-4">
             <h5 class="fw-light text-secondary">STYLE</h5>
           </div>
@@ -299,7 +299,7 @@
             </div>
           </div>
         </section>
-        <section class="container mb-5">
+        <section class="container mb-5 animate__animated animate__fadeInUp">
           <div class="border-bottom border-1 border-secondary mb-4">
             <h5 class="fw-light text-secondary">RECOMMEND</h5>
           </div>
