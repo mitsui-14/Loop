@@ -38,7 +38,7 @@ const routes = [
     ]
   },
   {
-    path: '/loop',
+    path: '/userboard',
     component: () => import('../views/Userboard.vue')
   },
   {
