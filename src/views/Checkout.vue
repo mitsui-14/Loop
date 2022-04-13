@@ -226,8 +226,8 @@
 
                     <th class="text-end">PRICE</th>
                   </thead>
-                  <tbody style="border-bottom: 1.5px solid #dddddd">
-                    <tr v-for="item in order.products" :key="item.id">
+                  <tbody>
+                    <tr v-for="item in order.products" :key="item.id" style="border-bottom: 1.5px solid #dddddd">
                       <td class="col-2">
                         <img class="img-fluid" :src="item.product.imageUrl" />
                       </td>

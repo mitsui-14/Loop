@@ -266,7 +266,7 @@
             </div>
           </div>
         </section>
-        <section class="container mb-5 animate__animated animate__fadeInUp">
+        <section class="container mb-5">
           <div class="border-bottom border-1 border-secondary mb-4">
             <h5 class="fw-light text-secondary">STYLE</h5>
           </div>
@@ -299,7 +299,7 @@
             </div>
           </div>
         </section>
-        <section class="container mb-5 animate__animated animate__fadeInUp">
+        <section class="container mb-5">
           <div class="border-bottom border-1 border-secondary mb-4">
             <h5 class="fw-light text-secondary">RECOMMEND</h5>
           </div>
@@ -366,7 +366,7 @@
               <p>© 2022 Luis | All rights reserved.</p>
             </div>
             <div class="col-md-4 text-white mx-auto">
-              <a class="text-decoration-none text-light" href="#">GitHub</a>
+              <a class="text-decoration-none text-light" href="https://github.com/mitsui-14/Loop.git">GitHub</a>
             </div>
           </div>
         </footer>

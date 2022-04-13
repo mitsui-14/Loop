@@ -38,7 +38,7 @@ const routes = [
     ]
   },
   {
-    path: '/userboard',
+    path: '/loop',
     component: () => import('../views/Userboard.vue')
   },
   {
@@ -89,11 +89,6 @@ const routes = [
   {
     path: '/checkout/:orderId',
     component: () => import('../views/Checkout.vue')
-  },
-
-  {
-    path: '/loop',
-    component: () => import('../views/Loop.vue')
   },
   {
     path: '/product',
