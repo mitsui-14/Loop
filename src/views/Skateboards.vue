@@ -305,7 +305,7 @@
               <p>© 2022 Luis | All rights reserved.</p>
             </div>
             <div class="col-md-4 text-white mx-auto">
-              <a class="text-decoration-none text-light" href="#">GitHub</a>
+            <a class="text-decoration-none text-light" href="https://github.com/mitsui-14/Loop.git">GitHub</a>
             </div>
           </div>
         </footer>
