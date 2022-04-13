@@ -248,7 +248,7 @@
               <div class="row row-cols-2 row-cols-md-1 g-3">
                 <div class="col">
                   <img
-                    class="img-fluid h-100"
+                    class="img-fluid"
                     src="../../image/coupon.jpeg"
                     alt=""
                   />
@@ -256,7 +256,7 @@
                 <div class="col demo">
                   <router-link to="/sale">
                     <img
-                      class="img-fluid h-100"
+                      class="img-fluid"
                       src="../../image/sale.jpeg"
                       alt=""
                     />
@@ -274,7 +274,7 @@
             <div class="col-md-4 demo">
               <router-link to="/shortboard">
                 <img
-                  class="img-fluid h-100"
+                  class="img-fluid"
                   src="../../image/shortboard.jpeg"
                 />
               </router-link>
@@ -282,7 +282,7 @@
             <div class="col-md-4 demo">
               <router-link to="/longboard">
                 <img
-                  class="img-fluid h-100"
+                  class="img-fluid"
                   src="../../image/longboard.jpeg"
                   alt=""
                 />
@@ -291,7 +291,7 @@
             <div class="col-md-4 demo">
               <router-link to="/cruiser">
                 <img
-                  class="img-fluid h-100"
+                  class="img-fluid"
                   src="../../image/cruiser.jpeg"
                   alt=""
                 />
